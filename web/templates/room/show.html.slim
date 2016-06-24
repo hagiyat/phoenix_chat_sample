@@ -1,0 +1,19 @@
+#messages.container[data-room-id="#{@room.id}"]
+  = for log <- @logs do
+    p
+      a[href="#"]
+        = "[#{log.user_name}]"
+      | &nbsp;
+      = log.message
+
+#footer
+  .container
+    .row
+      .col-sm-2
+        .input-group
+          span.input-group-addon
+            | @
+          input#username.form-control[type="text" placeholder="username"]
+      .col-sm-10
+          input#message-input.form-control[type="text" placeholder="message"]
+

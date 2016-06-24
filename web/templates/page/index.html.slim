@@ -6,22 +6,11 @@
     br
     | does not compromise speed and maintainability.
 
-#messages.container
-
-#footer
-  .container
-    .row
-      .col-sm-2
-        .input-group
-          span.input-group-addon
-            | @
-          input#username.form-control[type="text" placeholder="username"]
-      .col-sm-10
-          input#message-input.form-control[type="text" placeholder="message"]
-
-
-hr
-br
+h2= "rooms:"
+ul
+  = for room <- @rooms do
+    li
+      = link room.name, to: room_path(@conn, :show, room)
 
 .row.marketing
   .col-lg-6

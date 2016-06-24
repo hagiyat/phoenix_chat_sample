@@ -10,6 +10,7 @@ class App {
     socket.connect({user_id: "123"})
     var $status    = $("#status")
     var $messages  = $("#messages")
+    var $room_id  = $("#messages").data("room-id") || "lobby"
     var $input     = $("#message-input")
     var $username  = $("#username")
 
@@ -17,7 +18,7 @@ class App {
     socket.onError( ev => console.log("ERROR", ev) )
     socket.onClose( e => console.log("CLOSE", e))
 
-    var chan = socket.channel("rooms:lobby", {})
+    var chan = socket.channel("rooms:" + $room_id, {})
     chan.join().receive("ignore", () => console.log("auth error"))
                .receive("ok", () => console.log("join ok"))
                //.after(10000, () => console.log("Connection interruption"))
