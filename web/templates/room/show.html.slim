@@ -3,17 +3,20 @@
     p
       a[href="#"]
         = "[#{log.user_name}]"
-      | &nbsp;
-      = log.message
+      = if image?(log.message) do
+        img[src="#{log.message}" style="max-width: 400px"]
+      - else
+        | &nbsp;
+        = log.message
 
 #footer
   .container
     .row
-      .col-sm-2
-        .input-group
-          span.input-group-addon
-            | @
-          input#username.form-control[type="text" placeholder="username"]
-      .col-sm-10
-          input#message-input.form-control[type="text" placeholder="message"]
-
+      .col-sm-12.form-inline
+        .form-group
+          .input-group
+            span.input-group-addon
+              | @
+            input#username.form-control[type="text" placeholder="username"]
+          input#message-input.form-control[type="text" placeholder="message" style="width: 350px;"]
+          input#image-input.button.btn-default.btn-sm[type="file" value="+", data-image-api-url="#{image_path(@conn, :create)}"]

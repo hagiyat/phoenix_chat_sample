@@ -31,3 +31,5 @@ config :phoenix, :generators,
 config :phoenix, :template_engines,
   slim: PhoenixSlime.Engine,
   slime: PhoenixSlime.Engine
+
+config :chat_sample, ecto_repos: [ChatSample.Repo]

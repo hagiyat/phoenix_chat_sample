@@ -10,7 +10,7 @@ defmodule ChatSample.Router do
   end
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug :accepts, ["json", "jpeg", "png"]
   end
 
   scope "/", ChatSample do
@@ -21,7 +21,9 @@ defmodule ChatSample.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", ChatSample do
-  #   pipe_through :api
-  # end
+  scope "/api", ChatSample do
+    pipe_through :api
+
+    resources "/images", ImageController, only: ~w(create show)a
+  end
 end
